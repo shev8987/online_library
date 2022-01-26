@@ -1,22 +1,9 @@
 package com.shev8987.repository;
 
-import com.shev8987.model.BookDto;
+import com.shev8987.entity.Book;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
-public interface IBookRepository {
+public interface IBookRepository extends CrudRepository<Book, Long> {
 
-    BookDto GetBook(int id);
-
-    BookDto GetBook(String name);
-
-    List<BookDto> GetBooksToTitle(String title);
-
-    List<BookDto> GetBooksToAuthor(String author);
-
-    List<BookDto> GetBooksToGenre(String genre);
-
-    void SaveBook(BookDto book);
-
-    void DeleteBook(Integer id);
 }
