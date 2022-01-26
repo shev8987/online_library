@@ -1,14 +1,11 @@
 package com.shev8987.controller;
 
 import com.shev8987.entity.Book;
-import com.shev8987.service.AuthorService;
 import com.shev8987.service.BookService;
 
-import com.shev8987.service.GenreService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.rmi.ServerException;
 import java.util.List;
 
 @RestController
@@ -51,13 +48,13 @@ public class BookController {
     }
 
     @PostMapping("/book/add")
-    public void create(@RequestBody Book book) throws ServerException {
+    public void create(@RequestBody Book book) {
 
         bookService.SaveBook(book);
     }
 
     @PutMapping("/book/update")
-    public void update(@RequestBody Book book) throws ServerException {
+    public void update(@RequestBody Book book) {
 
         bookService.SaveBook(book);
     }
