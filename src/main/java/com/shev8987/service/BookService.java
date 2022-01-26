@@ -27,21 +27,34 @@ public class BookService {
     public ResponseEntity<Book> GetBook(Long id) {
 
         Optional<Book> book = bookRepository.findById(id);
-            return new ResponseEntity<>(book.get(), HttpStatus.OK);
+        return new ResponseEntity<>(book.get(), HttpStatus.OK);
     }
 
-    public ResponseEntity<Book> SaveBook(Book bookDto) throws ServerException {
+    public ResponseEntity<List<Book>> GetBookByTitle(String title) {
+
+        List<Book> book = bookRepository.findAllByTitleContaining(title);
+        return new ResponseEntity<>(book, HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<Book>> GetBookByAuthor(Long id) {
+
+        List<Book> book = bookRepository.findAllByAuthorId(id);
+        return new ResponseEntity<>(book, HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<Book>> GetBookByGenre(Long id) {
+
+        List<Book> book = bookRepository.findAllByGenreId(id);
+        return new ResponseEntity<>(book, HttpStatus.OK);
+    }
+
+
+
+    public ResponseEntity<Book> SaveBook(Book bookDto) {
 
         var book = bookRepository.save(bookDto);
 
-        if (book == null) {
-
-            throw new ServerException("Ошибка при добавлении/изменении книги");
-
-        } else {
-
-            return new ResponseEntity<>(book, HttpStatus.CREATED);
-        }
+        return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
 
     public void Delete(Long id) {

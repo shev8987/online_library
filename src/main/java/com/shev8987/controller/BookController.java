@@ -32,6 +32,24 @@ public class BookController {
         return bookService.GetBook(id);
     }
 
+    @GetMapping("/books/title")
+    public ResponseEntity<List<Book>> GetBooksTitle(@RequestParam String title){
+
+        return bookService.GetBookByTitle(title);
+    }
+
+    @GetMapping("/books/author")
+    public ResponseEntity<List<Book>> GetBooksAuthor(@RequestParam Long id){
+
+        return bookService.GetBookByAuthor(id);
+    }
+
+    @GetMapping("/books/genre")
+    public ResponseEntity<List<Book>> GetBooksGenre(@RequestParam Long id){
+
+        return bookService.GetBookByGenre(id);
+    }
+
     @PostMapping("/book/add")
     public void create(@RequestBody Book book) throws ServerException {
 
