@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "book", schema = "online_lib")
-public class Book {
+public class BookEntity {
 
     @Id
     @SequenceGenerator(name = "book_id_generator", sequenceName = "book_id_seq", allocationSize = 1)

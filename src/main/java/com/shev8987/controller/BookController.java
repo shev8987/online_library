@@ -1,6 +1,7 @@
 package com.shev8987.controller;
 
-import com.shev8987.entity.Book;
+import com.shev8987.entity.BookEntity;
+import com.shev8987.model.BookModel;
 import com.shev8987.service.BookService;
 
 import org.springframework.http.ResponseEntity;
@@ -18,49 +19,51 @@ public class BookController {
     }
 
     @GetMapping("/books")
-    public ResponseEntity<List<Book>> GetBooks(){
+    public ResponseEntity<List<BookModel>> GetBooks(){
+
+        var books = bookService.GetBooks();
 
         return bookService.GetBooks();
     }
 
     @GetMapping("/book/{id}")
-    public ResponseEntity<Book> GetBook(@PathVariable Long id){
+    public ResponseEntity<BookModel> GetBook(@PathVariable Long id){
 
         return bookService.GetBook(id);
     }
 
     @GetMapping("/books/title")
-    public ResponseEntity<List<Book>> GetBooksTitle(@RequestParam String title){
+    public ResponseEntity<List<BookEntity>> GetBooksTitle(@RequestParam String title){
 
         return bookService.GetBookByTitle(title);
     }
 
     @GetMapping("/books/author")
-    public ResponseEntity<List<Book>> GetBooksAuthor(@RequestParam Long id){
+    public ResponseEntity<List<BookEntity>> GetBooksAuthor(@RequestParam Long id){
 
         return bookService.GetBookByAuthor(id);
     }
 
     @GetMapping("/books/genre")
-    public ResponseEntity<List<Book>> GetBooksGenre(@RequestParam Long id){
+    public ResponseEntity<List<BookEntity>> GetBooksGenre(@RequestParam Long id){
 
         return bookService.GetBookByGenre(id);
     }
 
     @PostMapping("/book/add")
-    public void create(@RequestBody Book book) {
+    public void create(@RequestBody BookEntity book) {
 
         bookService.SaveBook(book);
     }
 
     @PutMapping("/book/update")
-    public void update(@RequestBody Book book) {
+    public void update(@RequestBody BookEntity book) {
 
         bookService.SaveBook(book);
     }
 
     @DeleteMapping("book/delete")
-    public void deleteBook(@RequestBody Book book){
+    public void deleteBook(@RequestBody BookEntity book){
 
         bookService.Delete(book.getId());
     }

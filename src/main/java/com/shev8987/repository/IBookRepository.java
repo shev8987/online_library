@@ -1,18 +1,17 @@
 package com.shev8987.repository;
 
-import com.shev8987.entity.Book;
+import com.shev8987.entity.BookEntity;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface IBookRepository extends CrudRepository<Book, Long> {
+public interface IBookRepository extends CrudRepository<BookEntity, Long> {
 
-    List<Book> findAllByTitleContaining(String title);
+    List<BookEntity> findAllByTitleContaining(String title);
 
-    List<Book> findAllByAuthorId(Long id);
+    List<BookEntity> findAllByAuthorId(Long id);
 
-    List<Book> findAllByGenreId(Long id);
+    List<BookEntity> findAllByGenreId(Long id);
 
 }

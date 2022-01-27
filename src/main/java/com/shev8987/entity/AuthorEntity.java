@@ -2,9 +2,11 @@ package com.shev8987.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Genre {
+@Table(name = "author", schema = "online_lib")
+public class AuthorEntity {
 
     @Id
     private Long id;

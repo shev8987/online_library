@@ -1,12 +1,9 @@
-package com.shev8987.entity;
+package com.shev8987.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.shev8987.entity.AuthorEntity;
 
-@Entity
-public class Author {
+public class AuthorModel extends AuthorEntity {
 
-    @Id
     private Long id;
 
     private String name;
@@ -25,5 +22,13 @@ public class Author {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public AuthorModel() {
+    }
+
+    public AuthorModel(AuthorEntity entity) {
+        this.setId(entity.getId());
+        this.setName(entity.getName());
     }
 }

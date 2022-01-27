@@ -1,6 +1,6 @@
 package com.shev8987.service;
 
-import com.shev8987.entity.Genre;
+import com.shev8987.entity.GenreEntity;
 import com.shev8987.repository.IGenreRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +13,9 @@ public class GenreService {
 
     IGenreRepository genreRepository;
 
-    public ResponseEntity<Genre> GetGenre(Long id) {
+    public ResponseEntity<GenreEntity> GetGenre(Long id) {
 
-        Optional<Genre> genre = genreRepository.findById(id);
+        Optional<GenreEntity> genre = genreRepository.findById(id);
 
         return new ResponseEntity<>(genre.get(), HttpStatus.OK);
 
