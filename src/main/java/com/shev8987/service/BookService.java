@@ -93,8 +93,7 @@ public class BookService {
      */
     public ResponseEntity<List<BookModel>> GetBookByTitle(String title) {
 
-        List<BookEntity> books = new ArrayList<>();
-         //List<BookEntity> books = bookRepository.findAllByTitleContaining(title);
+         List<BookEntity> books = bookRepository.getBooksByTitle(title);
 
         var list = InitListModelView(books);
 
@@ -103,13 +102,12 @@ public class BookService {
 
     /**
      * Возвращает список книг по id автора
-     * @param id
+     * @param name
      * @return
      */
-    public ResponseEntity<List<BookModel>> GetBookByAuthor(Long id) {
+    public ResponseEntity<List<BookModel>> GetBookByAuthor(String name) {
 
-        List<BookEntity> books = new ArrayList<>();
-        //List<BookEntity> books = bookRepository.findAllByAuthorId(id);
+        List<BookEntity> books = bookRepository.getBooksByAuthor(name);
 
         var list = InitListModelView(books);
 
@@ -118,13 +116,12 @@ public class BookService {
 
     /**
      * Возвращает список книг по id жанра
-     * @param id
+     * @param genre
      * @return
      */
-    public ResponseEntity<List<BookModel>> GetBookByGenre(Long id) {
+    public ResponseEntity<List<BookModel>> GetBookByGenre(String genre) {
 
-        List<BookEntity> books = new ArrayList<>();
-        //List<BookEntity> books = bookRepository.findAllByGenreId(id);
+        List<BookEntity> books = bookRepository.getBooksByGenre(genre);
 
         var list = InitListModelView(books);
 
@@ -137,12 +134,18 @@ public class BookService {
      * @param bookDto
      * @return
      */
-    public ResponseEntity<BookEntity> SaveBook(BookEntity bookDto) {
+    public ResponseEntity<BookEntity> AddBook(BookEntity bookDto) {
 
-        BookEntity book = new BookEntity();
-       // var book = bookRepository.save(bookDto);
+        bookRepository.addBook(bookDto);
 
-        return new ResponseEntity<>(book, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    public ResponseEntity<BookEntity> UpdateBook(BookEntity bookDto) {
+
+        bookRepository.updateBook(bookDto);
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     /**
@@ -151,6 +154,6 @@ public class BookService {
      */
     public void Delete(Long id) {
 
-       // bookRepository.deleteById(id);
+       bookRepository.deleteBook(id);
     }
 }

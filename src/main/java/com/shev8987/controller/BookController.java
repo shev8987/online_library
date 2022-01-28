@@ -29,16 +29,16 @@ public class BookController {
         return bookService.GetBookByTitle(title);
     }
 
-    @GetMapping("/books/author={id}")
-    public ResponseEntity<List<BookModel>> GetBooksAuthor(@PathVariable Long id) {
+    @GetMapping("/books/author={name}")
+    public ResponseEntity<List<BookModel>> GetBooksAuthor(@PathVariable String name) {
 
-        return bookService.GetBookByAuthor(id);
+        return bookService.GetBookByAuthor(name);
     }
 
-    @GetMapping("/books/genre={id}")
-    public ResponseEntity<List<BookModel>> GetBooksGenre(@PathVariable Long id) {
+    @GetMapping("/books/genre={genre}")
+    public ResponseEntity<List<BookModel>> GetBooksGenre(@PathVariable String genre) {
 
-        return bookService.GetBookByGenre(id);
+        return bookService.GetBookByGenre(genre);
     }
 
     @GetMapping("/book/{id}")
@@ -50,13 +50,13 @@ public class BookController {
     @PostMapping("/book/add")
     public void create(@RequestBody BookEntity book) {
 
-        bookService.SaveBook(book);
+        bookService.AddBook(book);
     }
 
     @PutMapping("/book/update")
     public void update(@RequestBody BookEntity book) {
 
-        bookService.SaveBook(book);
+        bookService.UpdateBook(book);
     }
 
     @DeleteMapping("book/delete")
