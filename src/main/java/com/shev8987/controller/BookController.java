@@ -19,9 +19,7 @@ public class BookController {
 
     @GetMapping("/books")
     public ResponseEntity<List<BookModel>> GetBooks() {
-
-        var books = bookService.GetBooks();
-
+        
         return bookService.GetBooks();
     }
 
