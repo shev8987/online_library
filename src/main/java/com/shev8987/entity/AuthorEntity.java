@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Таблица "автор" в БД
+ */
 @Entity
 @Table(name = "author", schema = "online_lib")
 public class AuthorEntity {

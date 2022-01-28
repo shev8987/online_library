@@ -2,6 +2,9 @@ package com.shev8987.entity;
 
 import javax.persistence.*;
 
+/**
+ * Таблица "книга" в БД
+ */
 @Entity
 @Table(name = "book", schema = "online_lib")
 public class BookEntity {

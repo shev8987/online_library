@@ -3,7 +3,6 @@ package com.shev8987.controller;
 import com.shev8987.entity.BookEntity;
 import com.shev8987.model.BookModel;
 import com.shev8987.service.BookService;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,35 +18,35 @@ public class BookController {
     }
 
     @GetMapping("/books")
-    public ResponseEntity<List<BookModel>> GetBooks(){
+    public ResponseEntity<List<BookModel>> GetBooks() {
 
         var books = bookService.GetBooks();
 
         return bookService.GetBooks();
     }
 
-    @GetMapping("/book/{id}")
-    public ResponseEntity<BookModel> GetBook(@PathVariable Long id){
-
-        return bookService.GetBook(id);
-    }
-
-    @GetMapping("/books/title")
-    public ResponseEntity<List<BookEntity>> GetBooksTitle(@RequestParam String title){
+    @GetMapping("/books/title={title}")
+    public ResponseEntity<List<BookModel>> GetBooksTitle(@PathVariable String title) {
 
         return bookService.GetBookByTitle(title);
     }
 
-    @GetMapping("/books/author")
-    public ResponseEntity<List<BookEntity>> GetBooksAuthor(@RequestParam Long id){
+    @GetMapping("/books/author={id}")
+    public ResponseEntity<List<BookModel>> GetBooksAuthor(@PathVariable Long id) {
 
         return bookService.GetBookByAuthor(id);
     }
 
-    @GetMapping("/books/genre")
-    public ResponseEntity<List<BookEntity>> GetBooksGenre(@RequestParam Long id){
+    @GetMapping("/books/genre={id}")
+    public ResponseEntity<List<BookModel>> GetBooksGenre(@PathVariable Long id) {
 
         return bookService.GetBookByGenre(id);
+    }
+
+    @GetMapping("/book/{id}")
+    public ResponseEntity<BookModel> GetBook(@PathVariable Long id) {
+
+        return bookService.GetBook(id);
     }
 
     @PostMapping("/book/add")
@@ -63,7 +62,7 @@ public class BookController {
     }
 
     @DeleteMapping("book/delete")
-    public void deleteBook(@RequestBody BookEntity book){
+    public void deleteBook(@RequestBody BookEntity book) {
 
         bookService.Delete(book.getId());
     }

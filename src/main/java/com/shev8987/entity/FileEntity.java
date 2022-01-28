@@ -6,6 +6,9 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+/**
+ * Таблица для хранения ресурсов (картинок, книг) в БД
+ */
 @Entity
 @Table(name = "resources", schema = "online_lib")
 public class FileEntity {

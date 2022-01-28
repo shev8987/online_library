@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Таблица "жанр" в БД
+ */
 @Entity
 @Table(name = "genre", schema = "online_lib")
 public class GenreEntity {
