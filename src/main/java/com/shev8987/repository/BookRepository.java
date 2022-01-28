@@ -58,16 +58,16 @@ public class BookRepository {
     }
 
     public void addBook(final BookEntity book) {
-        jdbcTemplate.update("insert into teacher(title, author_id, genre_id, icon_id, file_id) values(?,?,?,?,?)",
+        jdbcTemplate.update("insert into book(title, author_id, genre_id, icon_id, file_id) values(?,?,?,?,?)",
                 new Object[] { book.getTitle(), book.getAuthorId(), book.getGenreId(), book.getIconId(), book.getFileId() });
     }
 
     public void updateBook(final BookEntity book) {
-        jdbcTemplate.update("update teacher set title = ?, author_id = ?, genre_id = ?, icon_id = ?, file_id = ? where id = ?",
+        jdbcTemplate.update("update book set title = ?, author_id = ?, genre_id = ?, icon_id = ?, file_id = ? where id = ?",
                 new Object[] {book.getTitle(), book.getAuthorId(), book.getGenreId(), book.getIconId(), book.getFileId(), book.getId() });
     }
 
     public void deleteBook(final long id) {
-        jdbcTemplate.update("delete from teacher where id = ?", new Object[] { id });
+        jdbcTemplate.update("delete from book where id = ?", new Object[] { id });
     }
 }
