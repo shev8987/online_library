@@ -1,14 +1,11 @@
 package com.shev8987.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import org.springframework.data.annotation.Id;
 
 /**
  * Таблица "автор" в БД
  */
-@Entity
-@Table(name = "author", schema = "online_lib")
 public class AuthorEntity {
 
     @Id

@@ -1,14 +1,8 @@
 package com.shev8987.service;
 
-import com.shev8987.entity.AuthorEntity;
 import com.shev8987.entity.BookEntity;
-import com.shev8987.entity.GenreEntity;
-import com.shev8987.model.AuthorModel;
 import com.shev8987.model.BookModel;
-import com.shev8987.model.GenreModel;
-import com.shev8987.repository.IAuthorRepository;
-import com.shev8987.repository.IBookRepository;
-import com.shev8987.repository.IGenreRepository;
+import com.shev8987.repository.BookRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -20,16 +14,11 @@ import java.util.Optional;
 @Service
 public class BookService {
 
-    private final IBookRepository bookRepository;
+    private final BookRepository bookRepository;
 
-    private final IAuthorRepository authorRepository;
 
-    private final IGenreRepository genreRepository;
-
-    public BookService(IBookRepository repository, IAuthorRepository authorRepository, IGenreRepository genreRepository) {
-        this.bookRepository = repository;
-        this.authorRepository = authorRepository;
-        this.genreRepository = genreRepository;
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
     }
 
     /**
@@ -38,7 +27,7 @@ public class BookService {
      */
     public ResponseEntity<List<BookModel>> GetBooks() {
 
-        var bookRepositoryAll = (List<BookEntity>) bookRepository.findAll();
+        var bookRepositoryAll = (List<BookEntity>) bookRepository.getBooks();
         var list = InitListModelView(bookRepositoryAll);
 
         return new ResponseEntity<>(list, HttpStatus.OK);
@@ -51,7 +40,7 @@ public class BookService {
      */
     public ResponseEntity<BookModel> GetBook(Long id) {
 
-        Optional<BookEntity> book = bookRepository.findById(id);
+        Optional<BookEntity> book = Optional.ofNullable(bookRepository.getBook(id));
         var data = book.get();
 
         var bookModel = InitModelView(data);
@@ -66,14 +55,14 @@ public class BookService {
      */
     private BookModel InitModelView(BookEntity data){
 
-        Optional<AuthorEntity> author = authorRepository.findById(data.getAuthorId());
-        Optional<GenreEntity> genre = genreRepository.findById(data.getGenreId());
+        //Optional<AuthorEntity> author = authorRepository.findById(data.getAuthorId());
+        //Optional<GenreEntity> genre = genreRepository.findById(data.getGenreId());
 
         BookModel bookModel = new BookModel();
         bookModel.setId(data.getId());
         bookModel.setTitle(data.getTitle());
-        bookModel.setAuthor(new AuthorModel(author.get()));
-        bookModel.setGenre(new GenreModel(genre.get()));
+        //bookModel.setAuthor(new AuthorModel(author.get()));
+        //bookModel.setGenre(new GenreModel(genre.get()));
 
         return bookModel;
     }
@@ -104,7 +93,8 @@ public class BookService {
      */
     public ResponseEntity<List<BookModel>> GetBookByTitle(String title) {
 
-        List<BookEntity> books = bookRepository.findAllByTitleContaining(title);
+        List<BookEntity> books = new ArrayList<>();
+         //List<BookEntity> books = bookRepository.findAllByTitleContaining(title);
 
         var list = InitListModelView(books);
 
@@ -118,7 +108,8 @@ public class BookService {
      */
     public ResponseEntity<List<BookModel>> GetBookByAuthor(Long id) {
 
-        List<BookEntity> books = bookRepository.findAllByAuthorId(id);
+        List<BookEntity> books = new ArrayList<>();
+        //List<BookEntity> books = bookRepository.findAllByAuthorId(id);
 
         var list = InitListModelView(books);
 
@@ -132,7 +123,8 @@ public class BookService {
      */
     public ResponseEntity<List<BookModel>> GetBookByGenre(Long id) {
 
-        List<BookEntity> books = bookRepository.findAllByGenreId(id);
+        List<BookEntity> books = new ArrayList<>();
+        //List<BookEntity> books = bookRepository.findAllByGenreId(id);
 
         var list = InitListModelView(books);
 
@@ -147,7 +139,8 @@ public class BookService {
      */
     public ResponseEntity<BookEntity> SaveBook(BookEntity bookDto) {
 
-        var book = bookRepository.save(bookDto);
+        BookEntity book = new BookEntity();
+       // var book = bookRepository.save(bookDto);
 
         return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
@@ -158,6 +151,6 @@ public class BookService {
      */
     public void Delete(Long id) {
 
-        bookRepository.deleteById(id);
+       // bookRepository.deleteById(id);
     }
 }

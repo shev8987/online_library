@@ -27,7 +27,16 @@ public class DataBaseConfig {
         driverSource.setUrl(environment.getProperty("spring.datasource.url"));
         driverSource.setUsername(environment.getProperty("spring.datasource.username"));
         driverSource.setPassword(environment.getProperty("spring.datasource.password"));
+        driverSource.setSchema("online_lib");
 
         return driverSource;
+    }
+
+    @Bean
+    public JdbcTemplate getJdbcTemplate() throws ClassNotFoundException {
+
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource());
+
+        return jdbcTemplate;
     }
 }

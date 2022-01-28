@@ -1,32 +1,38 @@
 package com.shev8987.entity;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;;
 
 /**
  * Таблица "книга" в БД
  */
-@Entity
-@Table(name = "book", schema = "online_lib")
 public class BookEntity {
 
     @Id
-    @SequenceGenerator(name = "book_id_generator", sequenceName = "book_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_id_generator")
     private Long id;
 
     private String title;
 
-    @Column(name = "author_id")
     private Long authorId;
 
-    @Column(name = "genre_id")
     private Long genreId;
 
-    @Column(name = "icon_id")
     private Long iconId;
 
-    @Column(name = "file_id")
     private Long fileId;
+
+    public BookEntity() {
+
+    }
+
+    public BookEntity(Long id, String title, Long authorId, Long genreId, Long iconId, Long fileId) {
+
+        this.id = id;
+        this.title = title;
+        this.authorId = authorId;
+        this.genreId = genreId;
+        this.iconId = iconId;
+        this.fileId = fileId;
+    }
 
     public Long getId() {
         return id;
